@@ -43,9 +43,9 @@ describe '#DLlist' do
         @list2 = List.new([@ref1,@ref2,@ref3,@ref4,@ref5])
     end
     it 'Los nodos de la lista deben tener un siguiente y un anterior' do
-        expect{@list2.get_value}.to_not raise_error
-        expect{@list2.get_siguiente}.to_not raise_error
-        expect{@list2.get_anterior}.to_not raise_error
+        expect{@list2.head[:value]}.to_not raise_error
+        expect{@list2.head[:siguiente]}.to_not raise_error
+        expect{@list2.head[:anterior]}.to_not raise_error
     end
     
 end

@@ -2,7 +2,7 @@ require "lpp_Grupo3/version"
 require "lpp_Grupo3/reference"
 class List
 
-    attr_accessor :nodes
+    attr_accessor :head
     	
     def initialize(nodes)
     @Node = Struct.new(:value, :siguiente)
