@@ -5,7 +5,7 @@ class List
     attr_accessor :head
     	
     def initialize(nodes)
-    @Node = Struct.new(:value, :siguiente)
+    @Node = Struct.new(:value, :siguiente, :anterior)
     @head = nil
     @tail = nil
     @empty=true
@@ -16,14 +16,13 @@ class List
         end
     end
     def insertar(node)
-        actual=node
         if @empty == true
-            @estenodo = @Node.new(actual,nil)
+            @estenodo = @Node.new(node,nil,nil)
             @head=@estenodo
             @tail=@estenodo
             @empty=false
         else
-            @estenodo = @Node.new(actual,nil)
+            @estenodo = @Node.new(node,nil,@tail)
             @tail[:siguiente]=@estenodo
             @tail = @estenodo
         end
@@ -35,8 +34,16 @@ class List
         return @head[:siguiente]
     end
     def dequeque
-        nodo = @head[:value]
-        @head = @head[:siguiente]
+        if @head == @tail
+            nodo = @head[:value]
+            @head = nil
+            @tail = nil
+            @empty = true
+        else
+            nodo = @head[:value]
+            @head = @head[:siguiente]
+            @head[:anterior] = nil
+        end
         nodo
     end
     def enqueque(nodo)
