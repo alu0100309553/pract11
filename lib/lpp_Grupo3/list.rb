@@ -27,12 +27,6 @@ class List
             @tail = @estenodo
         end
     end
-    def get_value
-        return @head[:value]
-    end
-    def get_siguiente
-        return @head[:siguiente]
-    end
     def dequeque
         if @head == @tail
             nodo = @head[:value]

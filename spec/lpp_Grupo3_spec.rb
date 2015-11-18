@@ -11,8 +11,8 @@ describe LppGrupo3 do
         @list1 = List.new([@ref1,@ref2,@ref3,@ref4,@ref5])
     end
     it 'Debe existir un nodo de la lista con sus datos y su siguiente' do
-        expect(@list1.get_value).not_to be nil
-        expect(@list1.get_siguiente).not_to be nil
+        expect(@list1.head[:value]).not_to be nil
+        expect(@list1.head[:siguiente]).not_to be nil
     end
     it 'Se extrae el primer elemento de la lista' do
         #expect(@list1).to respond_to(:poop) 
@@ -28,7 +28,7 @@ describe LppGrupo3 do
     end 
     it 'Debe existir una lista con su cabeza' do
         expect(@list1).not_to be nil
-        expect(@list1.get_value).not_to be nil
+        expect(@list1.head).not_to be nil
     end 
 
 end 
@@ -46,6 +46,10 @@ describe '#DLlist' do
         expect{@list2.head[:value]}.to_not raise_error
         expect{@list2.head[:siguiente]}.to_not raise_error
         expect{@list2.head[:anterior]}.to_not raise_error
+    end
+    it 'Existe una clase para libros y publicaciones periódicas' do
+        @list2.head[:value].should be_an_instance_of Libro
+        @list2.tail[:value].should be_an_instance_of Articulo
     end
     
 end
