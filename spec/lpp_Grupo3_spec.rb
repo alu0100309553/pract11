@@ -58,6 +58,9 @@ describe '#DLlist' do
     it 'Existe un método para acceder al nombre medio de publicacion en la clase revista'do
         expect(@list2.tail[:value]).to respond_to(:get_nmedio)
     end
+    it 'Existe un método para obtener un string con los datos de la refencia en la clase artículo'do
+        expect(@list2.tail[:value]).to respond_to(:to_s)
+    end
     
 end
 
