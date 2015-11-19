@@ -52,6 +52,10 @@ describe '#DLlist' do
         @list2.head[:value].should be_an_instance_of Libro
         @list2.tail[:value].should be_an_instance_of Articulo
     end
+    it 'Existe un método para acceder al medio de publicacion en la clase revista'do
+        expect(@list2.tail[:value]).to respond_to(:get_medio)
+        
+    end
     
 end
 
