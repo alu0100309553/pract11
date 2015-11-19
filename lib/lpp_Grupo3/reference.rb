@@ -83,6 +83,9 @@ class Articulo < G03ref
 	def get_medio
 	    @medio
 	end
+	def get_nmedio
+	    @nmedio
+	end
 	
 	def to_s
 		text=""
