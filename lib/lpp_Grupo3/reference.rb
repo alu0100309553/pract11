@@ -72,7 +72,7 @@ class Libro < G03ref
 
 end
 class Articulo < G03ref
-def initialize(title,medio,nmedio,date,authors)
+	def initialize(title,medio,nmedio,date,authors)
 		super(authors,title,date)
 		
         @medio = medio
@@ -80,6 +80,10 @@ def initialize(title,medio,nmedio,date,authors)
         
         return self
 	end
+	def get_medio
+	    @medio
+	end
+	
 	def to_s
 		text=""
 	    for i in (0..@authors.size-2)
