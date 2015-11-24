@@ -103,5 +103,4 @@ class Articulo < G03ref
 	    end
 	    text
 	end
-
 end

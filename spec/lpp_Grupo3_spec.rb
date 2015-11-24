@@ -51,6 +51,8 @@ describe '#DLlist' do
     it 'Existe una clase para libros y publicaciones periódicas' do
         @list2.head[:value].should be_an_instance_of Libro
         @list2.tail[:value].should be_an_instance_of Articulo
+        @list2.tail[:value].should be_a G03ref
+        
     end
     it 'Existe un método para acceder al medio de publicacion en la clase revista'do
         expect(@list2.tail[:value]).to respond_to(:get_medio)

@@ -50,6 +50,4 @@ class List
             insertar(ref)
         end
     end
-    
-    
 end

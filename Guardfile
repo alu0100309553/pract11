@@ -39,7 +39,12 @@ end
 guard :rspec, cmd: "bundle exec rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
-
+  
+  #ficheros introducidos por mi
+  watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/#{m[1]}_spec.rb" }
+  watch('spec/spec_helper.rb')  { "spec" }
+  #fin de fichero introdicidos por mi
   # Feel free to open issues for suggestions and improvements
 
   # RSpec files
