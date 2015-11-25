@@ -66,3 +66,13 @@ describe '#DLlist' do
     
 end
 
+describe "# Comparaciones entre referencias por orden alfabético en el título" do
+    before :each do
+        @ref1=Libro.new("Git Pocket Guide","O’Reilly Media", 1,"02/08/2013",["978-1449325862","1449325866"], ["Richard E. Silverman"])
+        @ref2=Articulo.new("Los Fundamentos de Ruby","Internet","www.lpp.org","02/08/2013", ["Yo mismo"])
+    end
+    it "ref1 es anterior (en orden alfabético) que ref2" do
+      expect(@ref1 < @ref2).to eq(true)
+    end
+    
+  end
