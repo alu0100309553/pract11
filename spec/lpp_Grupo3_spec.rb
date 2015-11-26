@@ -123,10 +123,10 @@ describe "# Haciendo List enumerable" do
       expect(@list3.drop(5).title).to eq(["Los Fundamentos de Ruby"])
     end
     it "comprobrando max" do
-      expect(@list3.max.title).to eq(1)
+      expect(@list3.max.title).to eq("The Ruby Programming Language")
     end
     it "comprobrando min" do
-      expect(@list3.min.title).to eq(0)
+      expect(@list3.min.title).to eq("Git Pocket Guide")
     end
     it "comprobrando sort" do
       expect(@list4.sort.title).to eq(["Git Pocket Guide","Los Fundamentos de Ruby"])
