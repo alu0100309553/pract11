@@ -87,3 +87,48 @@ describe "# Comparaciones entre referencias por orden alfabético en el título"
       expect(@ref1 == @ref2).to eq(false)
     end
   end
+  
+  
+describe "# Haciendo List enumerable" do
+    before :each do
+        @ref1=["Programming Ruby 1.9 &2.0: The Pragmatic Programmers Guide","Pragmatic Bookshelf", 4,"07/07/2013",["978-1937785499","1937785491"], ["Dave Thomas","Andy Hunt","Chad Fowler"],"The Facets of Ruby"]
+        @ref2=["Pro Git 2009th Edition","Apress", 2009,"27/08/2009",["978-1430218333","1430218339"], ["Scott Chacon"],"Pro"]
+        @ref3=["The Ruby Programming Language","O’Reilly Media",1,"04/02/2008",["978-0596516178","0596516177"],["David Flanagan","Yukihiro Matsumoto"]]
+        @ref4=["The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends","Pragmatic Bookshelf", 1,"25/12/2010",["978-1934356371","1934356379"], ["David Chelimsky","Dave Astels","Bryan Helmkamp","Dan North","Zach Dennis","Aslak Hellesoy"],"The Facets of Ruby"]
+        @ref5=["Git Pocket Guide","O’Reilly Media", 1,"02/08/2013",["978-1449325862","1449325866"], ["Richard E. Silverman"]]
+        @ref6=["Los Fundamentos de Ruby","Internet","www.lpp.org","02/08/2013", ["Yo mismo"]]
+        @list3 = List.new([@ref1,@ref2,@ref3,@ref4,@ref5,@ref6])
+        @list4 = List.new([@ref5,@ref6])
+    end
+    it "comprobrando el metodo all? con una lista de 6 elementos" do
+      expect(@list3.all? { |ref| ref.title.length >= 5 }).to eq(true)
+      expect(@list3.all? { |ref| ref.title.length >= 100 }).to eq(false)
+    end 
+    it "comprobrando el metodo any? con una lista de 6 elementos" do
+      expect(@list3.any? { |ref| ref.title.length < 30 }).to eq(true)
+      expect(@list3.any? { |ref| ref.title.length > 100 }).to eq(false)
+    end 
+    it "comprobrando el metodo collect con una lista de 6 elementos" do
+      expect(@list3.map{|i| i.title}).to eq(["Programming Ruby 1.9 &2.0: The Pragmatic Programmers Guide","Pro Git 2009th Edition","The Ruby Programming Language","The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends","Git Pocket Guide","Los Fundamentos de Ruby"])
+      expect(@list3.collect{|i| i.title}).to eq(["Programming Ruby 1.9 &2.0: The Pragmatic Programmers Guide","Pro Git 2009th Edition","The Ruby Programming Language","The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends","Git Pocket Guide","Los Fundamentos de Ruby"])
+    end 
+    it "comprobrando el metodo count con una lista de 6 elementos" do
+      expect(@list3.count).to eq(6)
+    end
+    it "comprobrando el metodo detect con una lista de 6 elementos" do
+      expect(@list3.detect {|i| i.title == "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"}).to eq("The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends")
+      expect(@list3.find  {|i| i.title == "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"}).to eq("The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends")
+    end
+    it "comprobrando drop" do
+      expect(@list3.drop(5).title).to eq(["Los Fundamentos de Ruby"])
+    end
+    it "comprobrando max" do
+      expect(@list3.max.title).to eq(1)
+    end
+    it "comprobrando min" do
+      expect(@list3.min.title).to eq(0)
+    end
+    it "comprobrando sort" do
+      expect(@list4.sort.title).to eq(["Git Pocket Guide","Los Fundamentos de Ruby"])
+    end
+  end
