@@ -74,5 +74,16 @@ describe "# Comparaciones entre referencias por orden alfabético en el título"
     it "ref1 es anterior (en orden alfabético) que ref2" do
       expect(@ref1 < @ref2).to eq(true)
     end
-    
+    it "ref1 es posterior (en orden alfabético) que ref2" do
+      expect(@ref1 > @ref2).to eq(false)
+    end
+    it "ref1 es anterior o igual (en orden alfabético) que ref2" do
+      expect(@ref1 <= @ref2).to eq(true)
+    end
+    it "ref1 es posterior o igual (en orden alfabético) que ref2" do
+      expect(@ref1 >= @ref2).to eq(false)
+    end
+    it "ref1 es igual (en orden alfabético) que ref2" do
+      expect(@ref1 == @ref2).to eq(false)
+    end
   end
