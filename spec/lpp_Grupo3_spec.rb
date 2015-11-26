@@ -101,12 +101,12 @@ describe "# Haciendo List enumerable" do
         @list4 = List.new([@ref5,@ref6])
     end
     it "comprobrando el metodo all? con una lista de 6 elementos" do
-      expect(@list3.all? { |ref| ref.title.length >= 5 }).to eq(true)
-      expect(@list3.all? { |ref| ref.title.length >= 100 }).to eq(false)
+      expect(@list3.all? { |ref| ref.title.length >= 5}).to eq(true)
+      expect(@list3.all? { |ref| ref.title.length >= 1000 }).to eq(false)
     end 
     it "comprobrando el metodo any? con una lista de 6 elementos" do
       expect(@list3.any? { |ref| ref.title.length < 30 }).to eq(true)
-      expect(@list3.any? { |ref| ref.title.length > 100 }).to eq(false)
+      expect(@list3.any? { |ref| ref.title.length > 100}).to eq(false)
     end 
     it "comprobrando el metodo collect con una lista de 6 elementos" do
       expect(@list3.map{|i| i.title}).to eq(["Programming Ruby 1.9 &2.0: The Pragmatic Programmers Guide","Pro Git 2009th Edition","The Ruby Programming Language","The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends","Git Pocket Guide","Los Fundamentos de Ruby"])
@@ -116,11 +116,11 @@ describe "# Haciendo List enumerable" do
       expect(@list3.count).to eq(6)
     end
     it "comprobrando el metodo detect con una lista de 6 elementos" do
-      expect(@list3.detect {|i| i.title == "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"}).to eq("The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends")
-      expect(@list3.find  {|i| i.title == "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"}).to eq("The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends")
+      expect(@list3.detect {|i| i.title == "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"}).to eq(@list3.find  {|i| i.title == "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"})
+      expect(@list3.find  {|i| i.title == "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"}).to eq(@list3.detect {|i| i.title == "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"})
     end
     it "comprobrando drop" do
-      expect(@list3.drop(5).title).to eq(["Los Fundamentos de Ruby"])
+      expect(@list3.drop(5)[0].title).to eq("Los Fundamentos de Ruby")
     end
     it "comprobrando max" do
       expect(@list3.max.title).to eq("The Ruby Programming Language")
@@ -129,6 +129,6 @@ describe "# Haciendo List enumerable" do
       expect(@list3.min.title).to eq("Git Pocket Guide")
     end
     it "comprobrando sort" do
-      expect(@list4.sort.title).to eq(["Git Pocket Guide","Los Fundamentos de Ruby"])
+      expect(@list4.sort[0].title=="Git Pocket Guide"&&@list4.sort[1].title=="Los Fundamentos de Ruby").to eq(true)
     end
   end

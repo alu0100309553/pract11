@@ -1,6 +1,7 @@
 require "lpp_Grupo3/version"
 require "lpp_Grupo3/reference"
 class List
+    include Enumerable
 
     attr_accessor :head, :tail
     	
@@ -10,6 +11,7 @@ class List
     @tail = nil
     @empty=true
     @first=true
+    @lasteach = nil
     enqueque(nodes)
     end
     def insertar(node)
@@ -48,6 +50,17 @@ class List
                 ref=Libro.new(nodes[i][0],nodes[i][1],nodes[i][2],nodes[i][3],nodes[i][4],nodes[i][5],nodes[i][6])
             end
             insertar(ref)
+        end
+    end
+    def each
+        @lasteach=nil
+        while @lasteach != @tail
+            if @lasteach==nil
+                @lasteach=@head
+            else
+                @lasteach=@lasteach[:siguiente]
+            end
+            yield @lasteach[:value]
         end
     end
 end
