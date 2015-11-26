@@ -1,5 +1,6 @@
 require "lpp_Grupo3/version"
 class G03ref
+	include Comparable
     attr_accessor :title,:serie,:editorial,:edicion,:date,:isbn,:authors
 	def initialize(authors,title,date)
 	    self.authors = []
@@ -19,8 +20,11 @@ class G03ref
 	def get_date
 	    @date
 	end
+	def <=>(other)
+      return nil unless other.is_a? G03ref
+      @title <=> other.title
+	end
 end
-	       
 
 class Libro < G03ref
 	public
