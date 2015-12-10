@@ -132,3 +132,38 @@ describe "# Haciendo List enumerable" do
       expect(@list4.sort[0].title=="Git Pocket Guide"&&@list4.sort[1].title=="Los Fundamentos de Ruby").to eq(true)
     end
   end
+
+  describe Bibliografia do
+    before :each do
+         @ref1=CitaLibro.new()
+         @ref2=CitaCapitulo.new()
+         @ref3=CitaArticulo.new()
+         @ref3=CitaEdoc.new()
+         
+    end
+    it "Los nombres de los autores están invertidos" do
+      
+    end
+    it "Las entradas a la lista están ordenadas alfabéticamente de acuerdo al apellido del primer autor"do
+    
+    end
+    it "Si se repite autor/es se ordena de acuerdo al año de publicación" do
+    
+    end
+    it "Si aparece un autor solo y luego como parte del grupo, se lista primero el autor solo "do
+    
+    end
+    it "Si coincide el autor/es y el año de publicación se ordena de acuerdo al orden alfabético del titulo del articulo de del capítulo citado y asigne letras al año"do
+    
+    end
+    it "Su utiliza & en lugar de y o and para listar varios autores"do
+    
+    end
+    it "Se utiliza sangría francesa de media pulgada"do
+      
+    end
+    it "Se pone en mayuscula la primera letra de las palabras principales de los títulos de revista"do
+    
+    end
+    
+  end
