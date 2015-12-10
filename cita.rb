@@ -1,15 +1,14 @@
 require "lpp_Grupo3/version"
-require "lpp_Grupo3/reference"
-class Cita
+class Citayanoexiste
     include Comparable
-    attr_accessor :author, :datey, :titulo
+    attr_accessor 
     def initialize(author, date, titulo)
        @author=author
        @datey=date
        @titulo=titulo
     end
     def <=>(other)
-       if author == other.author
+       if autor == other.author
         if datey == other.datey
             titulo<=>other.titulo
         else
@@ -22,7 +21,7 @@ class Cita
     
 end
 
-class CitaLibro < Cita
+class Citalibro < Citayanoexiste
     attr_accessor
     def initialize(author, date, titulo, subtitulo, editor, edicion, volumen)
         super(author, date, titulo)
@@ -35,7 +34,7 @@ class CitaLibro < Cita
     def to_s
         text=""
         for i in (0..author.size-1)
-            text << "#{self.author[i][1]} ,#{(self.author[i][0])[0]} &"
+            text << "#{@author[i][2]} ,#{(@author[i][1])[0]} &"
         end
         text << "(#{@date})"
         text << "#{@title}: "
@@ -48,7 +47,7 @@ class CitaLibro < Cita
         
 end
 
-class CitaCapitulo  < Cita
+class Citacapitulo < Citayanoexiste
     attr_accessor
     def initialize(author, date, titulocap, titulo, subtitulo, editor, edicion, volumen)
         super(author, date, titulocap)
@@ -61,7 +60,7 @@ class CitaCapitulo  < Cita
     def to_s
         text=""
         for i in (0..author.size-1)
-            text << "#{@author[i][1]} ,#{(@author[i][0])[0]} &"
+            text << "#{@author[i][2]} ,#{(@author[i][1])[0]} &"
         end
         text << "(#{@date})"
         text << "#{self.titulo}. "
@@ -73,10 +72,9 @@ class CitaCapitulo  < Cita
     end
         
     
-    
 end
 
-class CitaArticulo < Cita
+class Citaarticulo < Citayanoexiste
     attr_accessor
     def initialize(author, date, articulo, medio, pagina)
         super(author,date, articulo)
@@ -86,7 +84,7 @@ class CitaArticulo < Cita
     def to_s
         text=""
         for i in (0..author.size-1)
-            text << "#{@author[i][1]} ,#{(@author[i][0])[0]} &"
+            text << "#{@author[i][2]} ,#{(@author[i][1])[0]} &"
         end
         text << "(#{@date})"
         text << "#{@titulo}. "
@@ -98,10 +96,10 @@ class CitaArticulo < Cita
     end
 end
 
-class CitaEdoc < Cita
+class Citaedoc < Citayanoexiste
     attr_accessor
     def initialize(author, date, titulo, edicion, tipomedio, editorial, enlace,acceso)
-        super(author, date, titulo)
+        super(autor, date, titulo)
         @edicion=edicion
         @tipomedio=tipomedio
         @editor=editorial
@@ -111,7 +109,7 @@ class CitaEdoc < Cita
     def to_s
         text=""
         for i in (0..author.size-1)
-            text << "#{@author[i][1]} ,#{(@author[i][0])[0]} &"
+            text << "#{@author[i][2]} ,#{(@author[i][1])[0]} &"
         end
         text << "(#{@date})"
         text << "#{@titulo}. "
