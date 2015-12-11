@@ -135,35 +135,40 @@ describe "# Haciendo List enumerable" do
 
   describe Bibliografia do
     before :each do
-         @ref1=CitaLibro.new([["Antonio","Pérez"],["Julio","César"]], 2008, "Paradigmas de programación", "Lenguajes Funcionales", "La Editorial", 10, 1)
-         @ref2=CitaCapitulo.new([["Antonio","Pérez"],["Julio","César"]], 2008, "Lambdas",  "Paradigmas de programación", "Lenguajes Funcionales",  "La Editorial", 10, 1)
-         @ref2=CitaLibro.new([["Antonio","Pérez"],["Julio","César"]], 2010, "Paradigmas de programación", "Lenguajes Estructurados",  "La Editorial", 5, 1)
-         @ref3=CitaArticulo.new([["Arturo","López"]], 2015, "Aprender Ruby", "Informática de Hoy", 15)
-         @ref4=CitaEdoc.new([["Juan","Fernández"]], 2014, "Lenguajes orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/01/2014")
+         @ref1=CitaLibro.new([["Pérez","Antonio"],["César","Julio"]], 2008, "Paradigmas de programación", "Lenguajes Funcionales", "La Editorial", 10, 1)
+         @ref2=CitaCapitulo.new([["Pérez","Antonio"],["César","Julio"]], 2008, "Lambdas",  "Paradigmas de programación", "Lenguajes Funcionales",  "La Editorial", 10, 1)
+         @ref5=CitaLibro.new([["Pérez","Antonio"],["César","Julio"]], 2010, "Paradigmas de programación", "Lenguajes Estructurados",  "La Editorial", 5, 1)
+         @ref3=CitaArticulo.new([["López","Arturo"]], 2015, "Aprender Ruby", "Informática de Hoy", 15)
+         @ref4=CitaEdoc.new([["Fernández","Juan"]], 2014, "Lenguajes orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/01/2014")
+         @ref6=CitaEdoc.new([["Pérez","Antonio"]], 2015, "Lenguajes no orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/02/2014")
          @bib=Bibliografia.new([@ref1,@ref2,@ref3,@ref4])
     end
     it "Los nombres de los autores están invertidos" do
-      expect(@ref1.to_s).to eq(" Pérez, A. & César, A. (2008). Paradigmas de programación:  Lenguajes Funcionales. (10)  (1). La Editorial.")
+      expect(@ref1.to_s).to eq(" Pérez, A. & César, A. (2008b). Paradigmas de programación:  Lenguajes Funcionales. (10)  (1). La Editorial.")
       
     end
     it "Las entradas a la lista están ordenadas alfabéticamente de acuerdo al apellido del primer autor"do
-      
+      expect(@ref1 > @ref3).to eq(true)
     end
     it "Si se repite autor/es se ordena de acuerdo al año de publicación" do
+      expect(@ref1 < @ref5).to eq(true)
     
     end
     it "Si aparece un autor solo y luego como parte del grupo, se lista primero el autor solo "do
+      expect(@ref1 > @ref6).to eq(true)
     
     end
-    it "Si coincide el autor/es y el año de publicación se ordena de acuerdo al orden alfabético del titulo del articulo de del capítulo citado y asigne letras al año"do
+    it "Si coincide el autor/es y el año de publicación se ordena de acuerdo al orden alfabético del titulo del articulo del capítulo citado y asigne letras al año"do
+      expect(@ref1.sufijo==2).to eq(true)
+      expect(@ref2.sufijo==1).to eq(true)
+      expect(@ref2 < @ref1).to eq(true)
     
     end
     it "Su utiliza & en lugar de y o and para listar varios autores"do
+      expect(@ref1.to_s).to eq(" Pérez, A. & César, A. (2008b). Paradigmas de programación:  Lenguajes Funcionales. (10)  (1). La Editorial.")
     
     end
-    it "Se utiliza sangría francesa de media pulgada"do
-      
-    end
+    
     it "Se pone en mayuscula la primera letra de las palabras principales de los títulos de revista"do
     
     end
