@@ -34,15 +34,16 @@ class CitaLibro < Cita
     end
     def to_s
         text=""
-        for i in (0..author.size-1)
-            text << "#{self.author[i][1]} ,#{(self.author[i][0])[0]} &"
+        for i in (0..author.size-2)
+            text << " #{self.author[i][1]}, #{(self.author[i][0])[0]}. &"
         end
-        text << "(#{@date})"
-        text << "#{@title}: "
-        text << "#{@subtitle}"
-        text << "(#{@edicion}) "
-        text << "(#{@volumen})."
-        text << "#{@editor}."
+        text << " #{self.author[author.size-1][1]}, #{(self.author[author.size-2][0])[0]}."
+        text << " (#{self.datey})."
+        text << " #{@title}: "
+        text << " #{@subtitle}."
+        text << " (#{@edicion}) "
+        text << " (#{@volumen})."
+        text << " #{@editor}."
         text
     end
         

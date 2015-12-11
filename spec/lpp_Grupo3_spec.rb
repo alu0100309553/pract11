@@ -137,11 +137,13 @@ describe "# Haciendo List enumerable" do
     before :each do
          @ref1=CitaLibro.new([["Antonio","Pérez"],["Julio","César"]], 2008, "Paradigmas de programación", "Lenguajes Funcionales", "La Editorial", 10, 1)
          @ref2=CitaCapitulo.new([["Antonio","Pérez"],["Julio","César"]], 2008, "Lambdas",  "Paradigmas de programación", "Lenguajes Funcionales",  "La Editorial", 10, 1)
+         @ref2=CitaLibro.new([["Antonio","Pérez"],["Julio","César"]], 2010, "Paradigmas de programación", "Lenguajes Estructurados",  "La Editorial", 5, 1)
          @ref3=CitaArticulo.new([["Arturo","López"]], 2015, "Aprender Ruby", "Informática de Hoy", 15)
          @ref4=CitaEdoc.new([["Juan","Fernández"]], 2014, "Lenguajes orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/01/2014")
          @bib=Bibliografia.new([@ref1,@ref2,@ref3,@ref4])
     end
     it "Los nombres de los autores están invertidos" do
+      expect(@ref1.to_s).to eq(" Pérez, A. & César, A. (2008). Paradigmas de programación:  Lenguajes Funcionales. (10)  (1). La Editorial.")
       
     end
     it "Las entradas a la lista están ordenadas alfabéticamente de acuerdo al apellido del primer autor"do
