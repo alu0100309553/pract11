@@ -11,6 +11,8 @@ class Bibliografia
     def insertar(nodos)
         @lista.enqueque(nodos)
         @lista=List.new(@lista.sort)
+        @suf=0
+        self.sufijos
     end
     def to_s
        (@lista.sort.map{|referencias|referencias.to_s}).join("\n")
@@ -23,6 +25,8 @@ class Bibliografia
                listaord[i].sufijo=@suf+1
                listaord[i+1].sufijo=@suf+2
                @suf=@suf+1
+            else
+                @suf=0
             end
         end
     end
