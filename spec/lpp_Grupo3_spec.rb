@@ -173,4 +173,14 @@ describe "# Haciendo List enumerable" do
       expect(@ref3.to_s).to eq(" López, A. (2015). Aprender Ruby. Informática De Hoy. (pag.:15).")
     end
     
+    
+    it "La salida para edoc se correponde con el estandar"do
+      expect(@ref4.to_s).to eq(" Fernández, J. (2014). Lenguajes orientados a objetos (1). [Prensa Digital]. Informatica.com. www.informatica.com. [23/01/2014].")
+    end
+    
+    it "Existe in metodo para insertar nuevas citas bibliofráficas en un una bibliografía existente"do
+      expect(@bib).to respond_to(:insertar)
+      
+    end
+    
   end

@@ -129,12 +129,11 @@ class CitaEdoc < Cita
         if (self.sufijo>0)
            text << (sufijo+96).chr 
         end
-        text << "#{@titulo}. "
-        text << "#{@title}. "
-        text << "(#{@edicion}) "
+        text << "). #{self.titulo} "
+        text << "(#{@edicion}). "
         text << "[#{@tipomedio}]."
-        text << "#{@editor}."
-        text << "#{@enlace}."
+        text << " #{@editor}. "
+        text << "#{@enlace}. "
         text << "[#{@acceso}]."
         text
     end
