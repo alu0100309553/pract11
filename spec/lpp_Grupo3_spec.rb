@@ -170,7 +170,7 @@ describe "# Haciendo List enumerable" do
     end
     
     it "Se pone en mayuscula la primera letra de las palabras principales de los títulos de revista"do
-      expect(@ref3.to_s).to eq(" López, A. (2015). Aprender Ruby. Informática de Hoy. (pag.:15).")
+      expect(@ref3.to_s).to eq(" López, A. (2015). Aprender Ruby. Informática De Hoy. (pag.:15).")
     end
     
   end

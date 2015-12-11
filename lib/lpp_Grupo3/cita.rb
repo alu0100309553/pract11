@@ -89,7 +89,7 @@ class CitaArticulo < Cita
     attr_accessor
     def initialize(author, date, articulo, medio, pagina)
         super(author,date, articulo)
-        @medio=medio
+        @medio=(medio.split.map{|palabra| palabra.capitalize}).join(" ")
         @paginas=pagina
     end
     def to_s
