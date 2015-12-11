@@ -138,7 +138,7 @@ describe "# Haciendo List enumerable" do
          @ref1=CitaLibro.new([["Pérez","Antonio"],["César","Julio"]], 2008, "Paradigmas de programación", "Lenguajes Funcionales", "La Editorial", 10, 1)
          @ref2=CitaCapitulo.new([["Pérez","Antonio"],["César","Julio"]], 2008, "Lambdas",  "Paradigmas de programación", "Lenguajes Funcionales",  "La Editorial", 10, 1)
          @ref5=CitaLibro.new([["Pérez","Antonio"],["César","Julio"]], 2010, "Paradigmas de programación", "Lenguajes Estructurados",  "La Editorial", 5, 1)
-         @ref3=CitaArticulo.new([["López","Arturo"]], 2015, "Aprender Ruby", "Informática de Hoy", 15)
+         @ref3=CitaArticulo.new([["López","Arturo"]], 2015, "Aprender Ruby", "Informática de hoy", 15)
          @ref4=CitaEdoc.new([["Fernández","Juan"]], 2014, "Lenguajes orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/01/2014")
          @ref6=CitaEdoc.new([["Pérez","Antonio"]], 2015, "Lenguajes no orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/02/2014")
          @bib=Bibliografia.new([@ref1,@ref2,@ref3,@ref4])
@@ -170,7 +170,7 @@ describe "# Haciendo List enumerable" do
     end
     
     it "Se pone en mayuscula la primera letra de las palabras principales de los títulos de revista"do
-    
+      expect(@ref3.to_s).to eq(" López, A. (2015). Aprender Ruby. Informática de Hoy. (pag.:15).")
     end
     
   end

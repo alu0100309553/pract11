@@ -94,15 +94,17 @@ class CitaArticulo < Cita
     end
     def to_s
         text=""
-        for i in (0..author.size-1)
-            text << "#{@author[i][1]} ,#{(@author[i][0])[0]} &"
+        for i in (0..author.size-2)
+            text << " #{self.author[i][0]}, #{(self.author[i][1])[0]}. &"
         end
-        text << "(#{@date})"
-        text << "#{@titulo}. "
-        text << "#{@title}. "
-        text << "(#{@edicion}) "
-        text << "(#{@volumen})."
-        text << "#{@editor}."
+        text << " #{self.author[author.size-1][0]}, #{(self.author[author.size-2][1])[0]}."
+        text << " (#{self.datey}"
+        if (self.sufijo>0)
+           text << (sufijo+96).chr 
+        end
+        text << "). #{self.titulo}."
+        text << " #{@medio}."
+        text << " (pag.:#{@paginas})."
         text
     end
 end
@@ -119,10 +121,14 @@ class CitaEdoc < Cita
     end
     def to_s
         text=""
-        for i in (0..author.size-1)
-            text << "#{@author[i][1]} ,#{(@author[i][0])[0]} &"
+        for i in (0..author.size-2)
+            text << " #{self.author[i][0]}, #{(self.author[i][1])[0]}. &"
         end
-        text << "(#{@date})"
+        text << " #{self.author[author.size-1][0]}, #{(self.author[author.size-2][1])[0]}."
+        text << " (#{self.datey}"
+        if (self.sufijo>0)
+           text << (sufijo+96).chr 
+        end
         text << "#{@titulo}. "
         text << "#{@title}. "
         text << "(#{@edicion}) "
