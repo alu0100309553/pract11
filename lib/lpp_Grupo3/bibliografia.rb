@@ -20,6 +20,11 @@ class Bibliografia
     
     def sufijos
        listaord = @lista.sort
+        for i in (0..listaord.size-1)
+    
+               listaord[i].sufijo=0
+            
+        end
         for i in (0..listaord.size-2)
             if (listaord[i].author==listaord[i+1].author&&listaord[i].datey==listaord[i+1].datey)
                listaord[i].sufijo=@suf+1
