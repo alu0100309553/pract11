@@ -2,16 +2,18 @@ require "lpp_Grupo3/version"
 require "lpp_Grupo3/cita"
 require "lpp_Grupo3/list"
 class Bibliografia
+    attr_accessor :lista
     def initialize(referencias)
-        @lista=List.new(referencias)
+        @lista=List.new(referencias.sort)
         @suf=0
         self.sufijos
     end
-    def insertar
-        
+    def insertar(nodos)
+        @lista.enqueque(nodos)
+        @lista=List.new(@lista.sort)
     end
     def to_s
-       @lista.sort.map{|referencias|referencias.to_s}
+       (@lista.sort.map{|referencias|referencias.to_s}).join("\n")
     end
     
     def sufijos

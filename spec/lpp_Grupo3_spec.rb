@@ -180,7 +180,12 @@ describe "# Haciendo List enumerable" do
     
     it "Existe in metodo para insertar nuevas citas bibliofráficas en un una bibliografía existente"do
       expect(@bib).to respond_to(:insertar)
-      
+    end
+    
+    it "Cuando se inserta un nuevo elemento este se ordena correctamente"do
+      expect(@bib.insertar([@ref5])).not_to be(raise_error)
+      expect(@ref1 < @ref5).to eq(true)
+      expect(@bib.to_s).to eq(" Fernández, J. (2014). Lenguajes orientados a objetos (1). [Prensa Digital]. Informatica.com. www.informatica.com. [23/01/2014].\n López, A. (2015). Aprender Ruby. Informática De Hoy. (pag.:15).\n Pérez, A. & César, A. (2008a). Lambdas. Paradigmas de programación. (10) (1).La Editorial.\n Pérez, A. & César, A. (2008b). Paradigmas de programación:  Lenguajes Funcionales. (10)  (1). La Editorial.\n Pérez, A. & César, A. (2010). Paradigmas de programación:  Lenguajes Estructurados. (5)  (1). La Editorial.")
     end
     
   end
