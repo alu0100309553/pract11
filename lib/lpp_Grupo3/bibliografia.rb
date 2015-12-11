@@ -7,6 +7,9 @@ class Bibliografia
         @suf=0
         self.sufijos
     end
+    def insertar
+        
+    end
     def to_s
        @lista.sort.map{|referencias|referencias.to_s}
     end
