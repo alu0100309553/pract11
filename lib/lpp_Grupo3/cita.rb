@@ -4,11 +4,27 @@ class Cita
     include Comparable
     attr_accessor :author, :datey, :titulo, :sufijo
     def initialize(author, date, titulo)
-       @author=author
-       @datey=date
-       @titulo=titulo
-       @sufijo=0
+       self.author=author
+       self.datey=date
+       self.titulo=titulo
+       self.sufijo=0
     end
+    
+    def initialize
+        self.author=[]
+        self.datey=[]
+        self.titulo=[]
+        self.sufijo=0 
+    end
+    
+    def autor (datos = {})
+        self.author.push([datos[:apellido], datos[:nombre]])
+    end
+    
+    def fecha (year)
+       self.datey = year 
+    end
+    
     def <=>(other)
        if author == other.author
         if datey == other.datey
@@ -24,60 +40,100 @@ class Cita
 end
 
 class CitaLibro < Cita
-    attr_accessor
+    attr_accessor :title, :subtitle, :editor, :edicion, :volumen
     def initialize(author, date, titulo, subtitulo, editor, edicion, volumen)
         super(author, date, titulo)
-        @title=titulo
-        @subtitle=subtitulo
-        @editor=editor
-        @edicion=edicion
-        @volumen=volumen
+        self.title=titulo
+        self.subtitle=subtitulo
+        self.editor=editor
+        self.edicion=edicion
+        self.volumen=volumen
     end
+    
+    def libro (datos = {})
+       self.titulo = datos[:titulo]
+       self.title = datos[:titulo]
+       self.subtitle = datos[:subtitulo]
+       self.editor = datos[:editor]
+       self.edicion = datos[:edicion]
+       self.volumen = datos[:volumen]
+    end
+    
+    def initialize(&block)
+        super    
+        self.title=[]
+        self.subtitle=[]
+        self.editor=[]
+        self.edicion=[]
+        self.volumen=[]    
+        instance_eval &block if block_given?
+    end
+    
     def to_s
         text=""
         for i in (0..author.size-2)
             text << " #{self.author[i][0]}, #{(self.author[i][1])[0]}. &"
         end
-        text << " #{self.author[author.size-1][0]}, #{(self.author[author.size-2][1])[0]}."
+        text << " #{self.author[author.size-1][0]}, #{(self.author[self.author.size-1][1])[0]}."
         text << " (#{self.datey}"
         if (self.sufijo>0)
-           text << (sufijo+96).chr 
+           text << (self.sufijo+96).chr 
         end
-        text << "). #{@title}: "
-        text << " #{@subtitle}."
-        text << " (#{@edicion}) "
-        text << " (#{@volumen})."
-        text << " #{@editor}."
+        text << "). #{self.title}: "
+        text << " #{self.subtitle}."
+        text << " (#{self.edicion}) "
+        text << " (#{self.volumen})."
+        text << " #{self.editor}."
         text
     end
         
 end
 
 class CitaCapitulo  < Cita
-    attr_accessor
+    attr_accessor :title, :subtitle, :editor, :edicion, :volumen
     def initialize(author, date, titulocap, titulo, subtitulo, editor, edicion, volumen)
         super(author, date, titulocap)
-        @title=titulo
-        @subtitle=subtitulo
-        @editor=editor
-        @edicion=edicion
-        @volumen=volumen
+        self.title=titulo
+        self.subtitle=subtitulo
+        self.editor=editor
+        self.edicion=edicion
+        self.volumen=volumen
     end
+    
+    def capitulo (datos = {})
+       self.title = datos[:titulo]
+       self.titulo = datos[:capitulo]
+       self.subtitle = datos[:subtitulo]
+       self.editor = datos[:editor]
+       self.edicion = datos[:edicion]
+       self.volumen = datos[:volumen]
+    end
+    
+    def initialize(&block)
+        super    
+        self.title=[]
+        self.subtitle=[]
+        self.editor=[]
+        self.edicion=[]
+        self.volumen=[]    
+        instance_eval &block if block_given?
+    end
+    
     def to_s
         text=""
         for i in (0..author.size-2)
             text << " #{self.author[i][0]}, #{(self.author[i][1])[0]}. &"
         end
-        text << " #{self.author[author.size-1][0]}, #{(self.author[author.size-2][1])[0]}."
+        text << " #{self.author[author.size-1][0]}, #{(self.author[self.author.size-1][1])[0]}."
         text << " (#{self.datey}"
         if (self.sufijo>0)
-           text << (sufijo+96).chr 
+           text << (self.sufijo+96).chr 
         end
         text << "). #{self.titulo}. "
-        text << "#{@title}. "
-        text << "(#{@edicion}) "
-        text << "(#{@volumen})."
-        text << "#{@editor}."
+        text << "#{self.title}. "
+        text << "(#{self.edicion}) "
+        text << "(#{self.volumen})."
+        text << "#{self.editor}."
         text
     end
         
@@ -86,55 +142,89 @@ class CitaCapitulo  < Cita
 end
 
 class CitaArticulo < Cita
-    attr_accessor
+    attr_accessor :medio, :paginas
     def initialize(author, date, articulo, medio, pagina)
         super(author,date, articulo)
-        @medio=(medio.split.map{|palabra| palabra.capitalize}).join(" ")
-        @paginas=pagina
+        self.medio=(medio.split.map{|palabra| palabra.capitalize}).join(" ")
+        self.paginas=pagina
     end
+    
+    def articulo(datos = {})
+        self.titulo=datos[:titulo]
+        self.medio=datos[:medio]
+        self.paginas=datos[:pagina]
+    end
+    
+    def initialize(&block)
+        super    
+        self.medio=[]
+        self.paginas=[]
+        instance_eval &block if block_given?
+    end
+    
     def to_s
         text=""
         for i in (0..author.size-2)
             text << " #{self.author[i][0]}, #{(self.author[i][1])[0]}. &"
         end
-        text << " #{self.author[author.size-1][0]}, #{(self.author[author.size-2][1])[0]}."
+        text << " #{self.author[self.author.size-1][0]}, #{(self.author[author.size-1][1])[0]}."
         text << " (#{self.datey}"
         if (self.sufijo>0)
-           text << (sufijo+96).chr 
+           text << (self.sufijo+96).chr 
         end
         text << "). #{self.titulo}."
-        text << " #{@medio}."
-        text << " (pag.:#{@paginas})."
+        text << " #{self.medio}."
+        text << " (pag.:#{self.paginas})."
         text
     end
 end
 
 class CitaEdoc < Cita
-    attr_accessor
+    attr_accessor :edicion, :tipomedio, :editor, :enlace, :acceso
     def initialize(author, date, titulo, edicion, tipomedio, editorial, enlace,acceso)
         super(author, date, titulo)
-        @edicion=edicion
-        @tipomedio=tipomedio
-        @editor=editorial
-        @enlace=enlace
-        @acceso=acceso
+        self.edicion=edicion
+        self.tipomedio=tipomedio
+        self.editor=editorial
+        self.enlace=enlace
+        self.acceso=acceso
     end
+    
+    def edoc(datos = {})
+        self.titulo=datos[:titulo]
+        self.edicion=datos[:edicion]
+        self.tipomedio=datos[:medio]
+        self.editor=datos[:editor]
+        self.enlace=datos[:enlace]
+        self.acceso=datos[:acceso]
+    end
+    
+    def initialize(&block)
+        super    
+        self.edicion=[]
+        self.tipomedio=[]
+        self.editor=[]
+        self.enlace=[]
+        self.acceso=[]    
+        instance_eval &block if block_given?
+    end
+    
     def to_s
         text=""
-        for i in (0..author.size-2)
+        for i in (0..self.author.size-2)
             text << " #{self.author[i][0]}, #{(self.author[i][1])[0]}. &"
         end
-        text << " #{self.author[author.size-1][0]}, #{(self.author[author.size-2][1])[0]}."
+        text << " #{self.author[self.author.size-1][0]}, #{(self.author[self.author.size-1][1])[0]}."
         text << " (#{self.datey}"
         if (self.sufijo>0)
-           text << (sufijo+96).chr 
+           text << (self.sufijo+96).chr 
         end
         text << "). #{self.titulo} "
-        text << "(#{@edicion}). "
-        text << "[#{@tipomedio}]."
-        text << " #{@editor}. "
-        text << "#{@enlace}. "
-        text << "[#{@acceso}]."
+        text << "(#{self.edicion}). "
+        text << "[#{self.tipomedio}]."
+        text << " #{self.editor}. "
+        text << "#{self.enlace}. "
+        text << "[#{self.acceso}]."
         text
     end
 end
