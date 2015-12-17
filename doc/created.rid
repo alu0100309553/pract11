@@ -1,0 +1,20 @@
+Thu, 17 Dec 2015 22:57:49 +0000
+./LICENSE.txt	Thu, 10 Dec 2015 21:27:43 +0000
+./Gemfile	Thu, 10 Dec 2015 21:27:43 +0000
+./cita.rb	Thu, 10 Dec 2015 15:49:23 +0000
+./lib/lpp_Grupo3/bibliografia.rb	Fri, 11 Dec 2015 13:32:34 +0000
+./lib/lpp_Grupo3/reference.rb	Thu, 10 Dec 2015 21:27:43 +0000
+./lib/lpp_Grupo3/cita.rb	Thu, 17 Dec 2015 22:53:30 +0000
+./lib/lpp_Grupo3/version.rb	Thu, 10 Dec 2015 21:27:43 +0000
+./lib/lpp_Grupo3/list.rb	Thu, 10 Dec 2015 21:27:43 +0000
+./lib/lpp_Grupo3.rb	Thu, 10 Dec 2015 21:31:06 +0000
+./CODE_OF_CONDUCT.md	Thu, 10 Dec 2015 21:27:43 +0000
+./bin/console	Thu, 10 Dec 2015 21:27:43 +0000
+./bin/setup	Thu, 10 Dec 2015 21:27:43 +0000
+./lpp_Grupo3.gemspec	Thu, 10 Dec 2015 21:27:43 +0000
+./spec/spec_helper.rb	Thu, 10 Dec 2015 21:27:43 +0000
+./spec/lpp_Grupo3_spec.rb	Thu, 17 Dec 2015 22:56:58 +0000
+./Rakefile	Thu, 10 Dec 2015 21:27:43 +0000
+./README.md	Thu, 10 Dec 2015 21:27:43 +0000
+./Guardfile	Thu, 10 Dec 2015 21:27:43 +0000
+./Gemfile.lock	Thu, 10 Dec 2015 21:27:43 +0000
