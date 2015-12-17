@@ -6,11 +6,11 @@ require 'lpp_Grupo3/version'
 Gem::Specification.new do |spec|
   spec.name          = "lpp_Grupo3"
   spec.version       = LppGrupo3::VERSION
-  spec.authors       = ["Germán Méndez"]
-  spec.email         = ["gcpmendez@gmail.com"]
+  spec.authors       = ["Rubén Labrador"]
+  spec.email         = ["rubenlabradorpaez@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = "Sumario"
+  spec.description   = 
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
