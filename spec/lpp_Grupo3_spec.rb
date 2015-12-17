@@ -133,60 +133,44 @@ describe "# Haciendo List enumerable" do
     end
   end
 
-  describe Bibliografia do
+  describe Cita do
     before :each do
-         @ref1=CitaLibro.new([["Pérez","Antonio"],["César","Julio"]], 2008, "Paradigmas de programación", "Lenguajes Funcionales", "La Editorial", 10, 1)
-         @ref2=CitaCapitulo.new([["Pérez","Antonio"],["César","Julio"]], 2008, "Lambdas",  "Paradigmas de programación", "Lenguajes Funcionales",  "La Editorial", 10, 1)
-         @ref5=CitaLibro.new([["Pérez","Antonio"],["César","Julio"]], 2010, "Paradigmas de programación", "Lenguajes Estructurados",  "La Editorial", 5, 1)
-         @ref3=CitaArticulo.new([["López","Arturo"]], 2015, "Aprender Ruby", "Informática de hoy", 15)
-         @ref4=CitaEdoc.new([["Fernández","Juan"]], 2014, "Lenguajes orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/01/2014")
-         @ref7=CitaEdoc.new([["Fernández","Juan"]], 2014, "Otro lenguajes orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/01/2014")
-         @ref6=CitaEdoc.new([["Pérez","Antonio"]], 2015, "Lenguajes no orientados a objetos", 1, "Prensa Digital", "Informatica.com", "www.informatica.com","23/02/2014")
-         @bib=Bibliografia.new([@ref1,@ref2,@ref3,@ref4,@ref7])
+         @ref1=CitaLibro.new()
+         @ref2=CitaCapitulo.new()
+         @ref3=CitaArticulo.new()
+         @ref4=CitaEdoc.new()
     end
-    it "Los nombres de los autores están invertidos" do
-      expect(@ref1.to_s).to eq(" Pérez, A. & César, A. (2008b). Paradigmas de programación:  Lenguajes Funcionales. (10)  (1). La Editorial.")
+    it "Cita libro responde a libro" do
+      expect(@ref1).to respond_to(:autor)
+      expect(@ref1.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
+      expect(@ref1).to respond_to(:fecha)
+      expect(@ref1.fecha "2008").to_not raise_error
+      expect(@ref1).to respond_to(:libro)
+      expect(@ref1.libro :titulo=>"Titulo", :subtitulo=>"Subtítulo", :editor=>"Editorial", :edicion=>1, :volumen=>3).to_not raise_error
       
     end
-    it "Las entradas a la lista están ordenadas alfabéticamente de acuerdo al apellido del primer autor"do
-      expect(@ref1 > @ref3).to eq(true)
+    it "Cita capitulo responde a capitulo" do
+      expect(@ref2).to respond_to(:autor)
+      expect(@ref2.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
+      expect(@ref2).to respond_to(:fecha)
+      expect(@ref2.fecha "2008").to_not raise_error
+      expect(@ref2).to respond_to(:capitulo)
+      expect(@ref2.capitulo :titulo=>"Titulo", :subtitulo=>"Subtítulo", :capitulo=>"Capítulo", :editor=>"Editorial", :edicion=>1, :volumen=>3).to_not raise_error
     end
-    it "Si se repite autor/es se ordena de acuerdo al año de publicación" do
-      expect(@ref1 < @ref5).to eq(true)
-    
+    it "Cita artículo responde a articulo" do
+      expect(@ref3).to respond_to(:autor)
+      expect(@ref3.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
+      expect(@ref3).to respond_to(:fecha)
+      expect(@ref3.fecha "2008").to_not raise_error
+      expect(@ref3).to respond_to(:articulo)
+      expect(@ref3.articulo :titulo=>"Titulo", :medio=>"Medio", :pagina=>10).to_not raise_error
     end
-    it "Si aparece un autor solo y luego como parte del grupo, se lista primero el autor solo "do
-      expect(@ref1 > @ref6).to eq(true)
-    
+   it "Cita capitulo responde a capitulo" do
+      expect(@ref4).to respond_to(:autor)
+      expect(@ref4.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
+      expect(@ref4).to respond_to(:fecha)
+      expect(@ref4.fecha "2008").to_not raise_error
+      expect(@ref4).to respond_to(:edoc)
+      expect(@ref4.edoc :titulo=>"Titulo", :edicion=>10, :medio=>"Prensa digital", :editor=>"editor", :enlace=>"www.prueba.net", :acceso=>"22/10/2015").to_not raise_error
     end
-    it "Si coincide el autor/es y el año de publicación se ordena de acuerdo al orden alfabético del titulo del articulo del capítulo citado y asigne letras al año"do
-      expect(@ref1.sufijo==2).to eq(true)
-      expect(@ref2.sufijo==1).to eq(true)
-      expect(@ref2 < @ref1).to eq(true)
-    
-    end
-    it "Su utiliza & en lugar de y o and para listar varios autores"do
-      expect(@ref1.to_s).to eq(" Pérez, A. & César, A. (2008b). Paradigmas de programación:  Lenguajes Funcionales. (10)  (1). La Editorial.")
-    
-    end
-    
-    it "Se pone en mayuscula la primera letra de las palabras principales de los títulos de revista"do
-      expect(@ref3.to_s).to eq(" López, A. (2015). Aprender Ruby. Informática De Hoy. (pag.:15).")
-    end
-    
-    
-    it "La salida para edoc se correponde con el estandar"do
-      expect(@ref4.to_s).to eq(" Fernández, J. (2014a). Lenguajes orientados a objetos (1). [Prensa Digital]. Informatica.com. www.informatica.com. [23/01/2014].")
-    end
-    
-    it "Existe in metodo para insertar nuevas citas bibliofráficas en un una bibliografía existente"do
-      expect(@bib).to respond_to(:insertar)
-    end
-    
-    it "Cuando se inserta un nuevo elemento este se ordena correctamente"do
-      expect(@bib.insertar([@ref5])).not_to be(raise_error)
-      expect(@ref1 < @ref5).to eq(true)
-      expect(@bib.to_s).to eq(" Fernández, J. (2014a). Lenguajes orientados a objetos (1). [Prensa Digital]. Informatica.com. www.informatica.com. [23/01/2014].\n Fernández, J. (2014b). Otro lenguajes orientados a objetos (1). [Prensa Digital]. Informatica.com. www.informatica.com. [23/01/2014].\n López, A. (2015). Aprender Ruby. Informática De Hoy. (pag.:15).\n Pérez, A. & César, A. (2008a). Lambdas. Paradigmas de programación. (10) (1).La Editorial.\n Pérez, A. & César, A. (2008b). Paradigmas de programación:  Lenguajes Funcionales. (10)  (1). La Editorial.\n Pérez, A. & César, A. (2010). Paradigmas de programación:  Lenguajes Estructurados. (5)  (1). La Editorial.")
-    end
-    
   end
