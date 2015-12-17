@@ -165,7 +165,7 @@ describe "# Haciendo List enumerable" do
       expect(@ref3).to respond_to(:articulo)
       expect(@ref3.articulo :titulo=>"Titulo", :medio=>"Medio", :pagina=>10).to_not raise_error
     end
-   it "Cita capitulo responde a capitulo" do
+   it "Cita edoc responde a edoc" do
       expect(@ref4).to respond_to(:autor)
       expect(@ref4.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
       expect(@ref4).to respond_to(:fecha)
