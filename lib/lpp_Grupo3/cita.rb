@@ -3,12 +3,6 @@ require "lpp_Grupo3/reference"
 class Cita
     include Comparable
     attr_accessor :author, :datey, :titulo, :sufijo
-    def initialize(author, date, titulo)
-       self.author=author
-       self.datey=date
-       self.titulo=titulo
-       self.sufijo=0
-    end
     
     def initialize
         self.author=[]
@@ -41,14 +35,6 @@ end
 
 class CitaLibro < Cita
     attr_accessor :title, :subtitle, :editor, :edicion, :volumen
-    def initialize(author, date, titulo, subtitulo, editor, edicion, volumen)
-        super(author, date, titulo)
-        self.title=titulo
-        self.subtitle=subtitulo
-        self.editor=editor
-        self.edicion=edicion
-        self.volumen=volumen
-    end
     
     def libro (datos = {})
        self.titulo = datos[:titulo]
@@ -91,14 +77,6 @@ end
 
 class CitaCapitulo  < Cita
     attr_accessor :title, :subtitle, :editor, :edicion, :volumen
-    def initialize(author, date, titulocap, titulo, subtitulo, editor, edicion, volumen)
-        super(author, date, titulocap)
-        self.title=titulo
-        self.subtitle=subtitulo
-        self.editor=editor
-        self.edicion=edicion
-        self.volumen=volumen
-    end
     
     def capitulo (datos = {})
        self.title = datos[:titulo]
@@ -143,11 +121,6 @@ end
 
 class CitaArticulo < Cita
     attr_accessor :medio, :paginas
-    def initialize(author, date, articulo, medio, pagina)
-        super(author,date, articulo)
-        self.medio=(medio.split.map{|palabra| palabra.capitalize}).join(" ")
-        self.paginas=pagina
-    end
     
     def articulo(datos = {})
         self.titulo=datos[:titulo]
@@ -181,14 +154,6 @@ end
 
 class CitaEdoc < Cita
     attr_accessor :edicion, :tipomedio, :editor, :enlace, :acceso
-    def initialize(author, date, titulo, edicion, tipomedio, editorial, enlace,acceso)
-        super(author, date, titulo)
-        self.edicion=edicion
-        self.tipomedio=tipomedio
-        self.editor=editorial
-        self.enlace=enlace
-        self.acceso=acceso
-    end
     
     def edoc(datos = {})
         self.titulo=datos[:titulo]

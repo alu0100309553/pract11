@@ -135,12 +135,58 @@ describe "# Haciendo List enumerable" do
 
   describe Cita do
     before :each do
-         @ref1=CitaLibro.new()
-         @ref2=CitaCapitulo.new()
-         @ref3=CitaArticulo.new()
-         @ref4=CitaEdoc.new()
+      
+      
+      @ref1 =  CitaLibro.new() do
+      autor   :nombre=> "Nombre", 
+              :apellido=> "Apellido"
+      autor   :nombre=>"Otro",
+              :apellido=> "Otro"
+      fecha   "2008"
+      libro   :titulo=>"Titulo",
+              :subtitulo=>"Subtítulo",
+              :editor=>"Editorial",
+              :edicion=>1,
+              :volumen=>3
+      end
+      
+      @ref2 = CitaCapitulo.new() do
+      autor   :nombre=> "Nombre", 
+              :apellido=> "Apellido"
+      fecha   "2008"
+      capitulo:titulo=>"Titulo",
+              :subtitulo=>"Subtítulo",
+              :capitulo=>"Capítulo",
+              :editor=>"Editorial",
+              :edicion=>1,
+              :volumen=>3
+      end
+      
+      @ref3 = CitaArticulo.new() do
+      autor   :nombre=> "Nombre", 
+              :apellido=> "Apellido"
+      fecha   "2008"
+      articulo:titulo=>"Titulo",
+              :medio=>"Medio",
+              :pagina=>10
+      end
+      
+      @ref4 = CitaEdoc.new() do
+      autor   :nombre=> "Nombre", 
+              :apellido=> "Apellido"
+      fecha   "2008"
+      edoc    :titulo=>"Titulo",
+              :edicion=>10,
+              :medio=>"Prensa digital",
+              :editor=>"editor",
+              :enlace=>"www.prueba.net",
+              :acceso=>"22/10/2015"
+      end
+      @bib = Bibliografia.new([@ref1,@ref2,@ref3,@ref4])
+        
     end
     it "Cita libro responde a libro" do
+      expect(@ref1).to be_an_instance_of(CitaLibro)
       expect(@ref1).to respond_to(:autor)
       expect(@ref1.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
       expect(@ref1).to respond_to(:fecha)
@@ -150,6 +196,7 @@ describe "# Haciendo List enumerable" do
       
     end
     it "Cita capitulo responde a capitulo" do
+      expect(@ref2).to be_an_instance_of(CitaCapitulo)
       expect(@ref2).to respond_to(:autor)
       expect(@ref2.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
       expect(@ref2).to respond_to(:fecha)
@@ -158,6 +205,7 @@ describe "# Haciendo List enumerable" do
       expect(@ref2.capitulo :titulo=>"Titulo", :subtitulo=>"Subtítulo", :capitulo=>"Capítulo", :editor=>"Editorial", :edicion=>1, :volumen=>3).to_not raise_error
     end
     it "Cita artículo responde a articulo" do
+      expect(@ref3).to be_an_instance_of(CitaArticulo)
       expect(@ref3).to respond_to(:autor)
       expect(@ref3.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
       expect(@ref3).to respond_to(:fecha)
@@ -166,6 +214,7 @@ describe "# Haciendo List enumerable" do
       expect(@ref3.articulo :titulo=>"Titulo", :medio=>"Medio", :pagina=>10).to_not raise_error
     end
    it "Cita edoc responde a edoc" do
+      expect(@ref4).to be_an_instance_of(CitaEdoc)
       expect(@ref4).to respond_to(:autor)
       expect(@ref4.autor :nombre=> "Nombre", :apellido=>"Apellido").to_not raise_error
       expect(@ref4).to respond_to(:fecha)
@@ -173,4 +222,7 @@ describe "# Haciendo List enumerable" do
       expect(@ref4).to respond_to(:edoc)
       expect(@ref4.edoc :titulo=>"Titulo", :edicion=>10, :medio=>"Prensa digital", :editor=>"editor", :enlace=>"www.prueba.net", :acceso=>"22/10/2015").to_not raise_error
     end
+   it "La salida de bibliografía es la esperada"do
+      expect(@bib.to_s).to eq(" Apellido, N. (2008a). Capítulo. Titulo. (1) (3).Editorial.\n Apellido, N. (2008b). Titulo. Medio. (pag.:10).\n Apellido, N. (2008c). Titulo (10). [Prensa digital]. editor. www.prueba.net. [22/10/2015].\n Apellido, N. & Otro, O. (2008). Titulo:  Subtítulo. (1)  (3). Editorial.")
+   end
   end
